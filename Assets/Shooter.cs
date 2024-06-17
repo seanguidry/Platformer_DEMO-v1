@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Shooter : MonoBehaviour
 {
-    public Transform bulletSpawn;
+    public Vector3 direction;
+    public Transform bulletTransform;
     public GameObject bulletPrefab;
     public float bulletSpeed = 10f;
 
@@ -17,10 +18,14 @@ public class Shooter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        direction = Vector3.right;
+
         if (Input.GetKeyDown(KeyCode.Space)) 
         {
-            var bullet = Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
-            bullet.GetComponent<Rigidbody2D>().velocity - bulletSpawn.right * bulletSpeed;
+            var bullet = Instantiate(bulletPrefab, bulletTransform.position, bulletTransform.rotation);
         }
+        
+        bulletTransform.position = bulletTransform.position + (direction * bulletSpeed * Time.deltaTime);
     }
 }
+  
