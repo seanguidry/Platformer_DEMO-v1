@@ -18,11 +18,11 @@ public class Shooter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        direction = Vector3.right;
 
         if (Input.GetKeyDown(KeyCode.Space)) 
         {
             var bullet = Instantiate(bulletPrefab, bulletTransform.position, bulletTransform.rotation);
+            Vector3 direction = new Vector3(1, 0);
         }
         
         bulletTransform.position = bulletTransform.position + (direction * bulletSpeed * Time.deltaTime);
